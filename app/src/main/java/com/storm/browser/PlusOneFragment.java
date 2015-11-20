@@ -4,6 +4,8 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,9 +32,9 @@ public class PlusOneFragment extends BaseFragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    private Button mPlusOneButton;
-
     private OnFragmentInteractionListener mListener;
+
+    RecyclerView rvList;
 
     public PlusOneFragment() {
         // Required empty public constructor
@@ -71,9 +73,10 @@ public class PlusOneFragment extends BaseFragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_plus_one, container, false);
 
-        //Find the +1 button
-        mPlusOneButton = (Button) view.findViewById(R.id.plus_one_button);
-
+        rvList = (RecyclerView) view.findViewById(R.id.rv_list);
+        rvList.setLayoutManager(new StaggeredGridLayoutManager(2,
+                StaggeredGridLayoutManager.VERTICAL));
+        rvList.setAdapter(new NotesAdapter(getActivity(), 20));
         return view;
     }
 
